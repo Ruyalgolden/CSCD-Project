@@ -89,7 +89,7 @@ class MonsterPathing {
         }
         this.obj.setAttribute("position", { x: this.x, y: this.y, z: this.z });
       } else {
-        console.log(this.LoS)
+        console.log("testing" + this.LoS)
 
         this.blockx = camera.object3D.position.x;
         this.blockz = camera.object3D.position.z;
