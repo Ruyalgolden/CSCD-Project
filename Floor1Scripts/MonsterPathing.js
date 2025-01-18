@@ -8,7 +8,7 @@ class MonsterPathing {
     for (let i = 1; i <= 8; i++) {
       this.blocks.push(document.querySelector("#block" + i));
     }
-    this.obj = document.createElement("a-box");
+    this.obj = document.createElement("a-entity");
     this.x = 0;
     this.z = 25;
     this.obj.setAttribute("position", { x: 0, y: 2.5, z: 25 });
@@ -90,8 +90,6 @@ class MonsterPathing {
         }
         this.obj.setAttribute("position", { x: this.x, y: this.y, z: this.z });
       } else {
-        // console.log(this.lineOfSight.getAttribute("width"))
-        // console.log(camera.object3D.position.x)
         this.blockx = camera.object3D.position.x;
         this.blockz = camera.object3D.position.z;
 
@@ -114,6 +112,9 @@ class MonsterPathing {
             this.closestBlock();
             this.seePlayer = false;
           }
+          if (distance(camera,this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
+            this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
+          }
           this.lineOfSight.setAttribute("position", { x: this.lineOfSight.x, y: 2.5, z: this.lineOfSight.z });
           if (camera.object3D.x < this.x) this.lineOfSight.object3D.rotation.y = -Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
           else this.lineOfSight.object3D.rotation.y = Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
@@ -124,10 +125,8 @@ class MonsterPathing {
   }
   closestBlock() {
     for (let i = 0; i < this.blocks.length; i++) {
-      // console.log(distance(this.obj, this.blocks[i]) < distance(this.obj, this.blocks[this.nextBlock-1]))
       if (distance(this.obj, this.blocks[i]) < distance(this.obj, this.blocks[this.nextBlock-1])) {
         this.nextBlock = i+1;
-        // console.log(this.nextBlock)
       }
     }
   }

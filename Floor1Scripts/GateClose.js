@@ -33,7 +33,7 @@ class GateClose {
   playSound() {
     if (!this.playsound) {
       let leftGate = document.getElementById("LeftGate");
-      leftGate.components.sound.playSound();
+      // leftGate.components.sound.playSound();
       this.playsound=true;
     }
   }
