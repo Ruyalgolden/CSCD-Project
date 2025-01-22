@@ -3,7 +3,7 @@ class MonsterPathing {
   constructor() {
     this.nextBlock = 1;
     this.seePlayer = false;
-    this.y = 2.5;
+    this.y = 0;
     this.blocks = [];
     for (let i = 1; i <= 8; i++) {
       this.blocks.push(document.querySelector("#block" + i));
@@ -11,8 +11,10 @@ class MonsterPathing {
     this.obj = document.createElement("a-entity");
     this.x = 0;
     this.z = 25;
-    this.obj.setAttribute("position", { x: 0, y: 2.5, z: 25 });
-    this.obj.setAttribute("height", 5)
+    this.obj.setAttribute("position", { x: 0, y: 0, z: 25 });
+    this.obj.setAttribute("scale", { x: 3, y: 3, z: 3 })
+    this.obj.setAttribute("gltf-model", "#monster")
+    this.obj.setAttribute("animation-mixer", "clip:Walk")
     scene.append(this.obj);
 
     this.lineOfSight = document.createElement("a-box");
@@ -22,12 +24,15 @@ class MonsterPathing {
     this.lineOfSight.setAttribute("depth", 5)
     this.lineOfSight.x = 0;
     this.lineOfSight.z = 0;
-    this.lineOfSight.setAttribute("side","double")
+    this.lineOfSight.setAttribute("side", "double")
     this.LoS = 0;
+    this.switch = true;
     scene.append(this.lineOfSight);
   }
   move() {
     for (let i = 0; i < this.blocks.length; i++) {
+      this.obj.setAttribute("look-at", "#block"+this.nextBlock)
+      
       if (!this.seePlayer) {
         this.blockx = this.blocks[this.nextBlock - 1].object3D.position.x;
         this.blockz = this.blocks[this.nextBlock - 1].object3D.position.z;
@@ -54,6 +59,7 @@ class MonsterPathing {
         } else {
           this.nextBlock += 1;
           if (this.nextBlock > 8) this.nextBlock = 1;
+          this.switch = true;
         }
         if (this.lineOfSight.object3D.rotation.y < 1 && this.lineOfSight.object3D.rotation.y > -1) {
           if (this.obj.object3D.position.x > this.blocks[this.nextBlock - 1].object3D.position.x) {
@@ -108,13 +114,14 @@ class MonsterPathing {
             this.z -= .0125;
             this.lineOfSight.z = this.z - (Math.abs(this.z - this.blockz) / 2);
           }
-          if (distance(camera,this.obj) > parseInt(this.lineOfSight.getAttribute("width"))+5) {
+          if (distance(camera, this.obj) > parseInt(this.lineOfSight.getAttribute("width")) + 5) {
             this.closestBlock();
             this.seePlayer = false;
           }
-          if (distance(camera,this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
+          if (distance(camera, this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
             this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
           }
+          this.obj.setAttribute("look-at","#camera")
           this.lineOfSight.setAttribute("position", { x: this.lineOfSight.x, y: 2.5, z: this.lineOfSight.z });
           if (camera.object3D.x < this.x) this.lineOfSight.object3D.rotation.y = -Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
           else this.lineOfSight.object3D.rotation.y = Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
@@ -125,8 +132,8 @@ class MonsterPathing {
   }
   closestBlock() {
     for (let i = 0; i < this.blocks.length; i++) {
-      if (distance(this.obj, this.blocks[i]) < distance(this.obj, this.blocks[this.nextBlock-1])) {
-        this.nextBlock = i+1;
+      if (distance(this.obj, this.blocks[i]) < distance(this.obj, this.blocks[this.nextBlock - 1])) {
+        this.nextBlock = i + 1;
       }
     }
   }
