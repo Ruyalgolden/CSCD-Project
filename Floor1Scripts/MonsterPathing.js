@@ -3,6 +3,7 @@ class MonsterPathing {
   constructor() {
     this.nextBlock = 1;
     this.seePlayer = false;
+    this.hit = false;
     this.y = 0;
     this.blocks = [];
     for (let i = 1; i <= 8; i++) {
@@ -18,7 +19,7 @@ class MonsterPathing {
     scene.append(this.obj);
 
     this.lineOfSight = document.createElement("a-box");
-    this.lineOfSight.setAttribute("opacity", ".25")
+    this.lineOfSight.setAttribute("opacity", "0")
     this.lineOfSight.setAttribute("height", 5)
     this.lineOfSight.setAttribute("position", { x: 0, y: 2.5, z: 0 });
     this.lineOfSight.setAttribute("depth", 5)
@@ -31,9 +32,11 @@ class MonsterPathing {
   }
   move() {
     for (let i = 0; i < this.blocks.length; i++) {
-      this.obj.setAttribute("look-at", "#block"+this.nextBlock)
-      
+      this.obj.setAttribute("look-at", "#block" + this.nextBlock)
+
       if (!this.seePlayer) {
+        this.hit = false;
+        this.obj.setAttribute("animation-mixer", "clip:Walk")
         this.blockx = this.blocks[this.nextBlock - 1].object3D.position.x;
         this.blockz = this.blocks[this.nextBlock - 1].object3D.position.z;
 
@@ -98,30 +101,35 @@ class MonsterPathing {
       } else {
         this.blockx = camera.object3D.position.x;
         this.blockz = camera.object3D.position.z;
-
-        if (distance(this.obj, this.blocks[this.nextBlock - 1]) > 2.5) {
-          if (this.x < this.blockx && Math.abs(this.x - this.blockx) > .01) {
-            this.x += .0125;
-            this.lineOfSight.x = this.x + (Math.abs(this.x - this.blockx) / 2);
-          } else {
-            this.x -= .0125;
-            this.lineOfSight.x = this.x - (Math.abs(this.x - this.blockx) / 2);
-          }
-          if (this.z < this.blockz && Math.abs(this.z - this.blockz) > .001) {
-            this.z += .0125;
-            this.lineOfSight.z = this.z + (Math.abs(this.z - this.blockz) / 2);
-          } else {
-            this.z -= .0125;
-            this.lineOfSight.z = this.z - (Math.abs(this.z - this.blockz) / 2);
+        if (!this.hit) {
+          if (distance(this.obj, this.blocks[this.nextBlock - 1]) > 2.5) {
+            if (this.x < this.blockx && Math.abs(this.x - this.blockx) > .01) {
+              this.x += .0125;
+              this.lineOfSight.x = this.x + (Math.abs(this.x - this.blockx) / 2);
+            } else {
+              this.x -= .0125;
+              this.lineOfSight.x = this.x - (Math.abs(this.x - this.blockx) / 2);
+            }
+            if (this.z < this.blockz && Math.abs(this.z - this.blockz) > .001) {
+              this.z += .0125;
+              this.lineOfSight.z = this.z + (Math.abs(this.z - this.blockz) / 2);
+            } else {
+              this.z -= .0125;
+              this.lineOfSight.z = this.z - (Math.abs(this.z - this.blockz) / 2);
+            }
           }
           if (distance(camera, this.obj) > parseInt(this.lineOfSight.getAttribute("width")) + 5) {
             this.closestBlock();
-            this.seePlayer = false;
+          } else if (distance(camera, this.obj) < 3) {
+            console.log("hit")
+            this.hit = true;
+            this.obj.setAttribute("animation-mixer", "clip:Idle")
+            setTimeout(() => { this.closestBlock() }, 2000);
           }
           if (distance(camera, this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
             this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
           }
-          this.obj.setAttribute("look-at","#camera")
+          this.obj.setAttribute("look-at", "#camera")
           this.lineOfSight.setAttribute("position", { x: this.lineOfSight.x, y: 2.5, z: this.lineOfSight.z });
           if (camera.object3D.x < this.x) this.lineOfSight.object3D.rotation.y = -Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
           else this.lineOfSight.object3D.rotation.y = Math.atan2(Math.abs(this.z - camera.object3D.position.z), Math.abs(this.x - camera.object3D.position.x));
@@ -131,6 +139,8 @@ class MonsterPathing {
     }
   }
   closestBlock() {
+    this.obj.setAttribute("look-at", "#camera")
+    this.seePlayer = false;
     for (let i = 0; i < this.blocks.length; i++) {
       if (distance(this.obj, this.blocks[i]) < distance(this.obj, this.blocks[this.nextBlock - 1])) {
         this.nextBlock = i + 1;
