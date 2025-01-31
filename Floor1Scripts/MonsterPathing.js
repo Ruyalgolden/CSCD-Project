@@ -16,6 +16,15 @@ class MonsterPathing {
     this.obj.setAttribute("scale", { x: 3, y: 3, z: 3 })
     this.obj.setAttribute("gltf-model", "#monster")
     this.obj.setAttribute("animation-mixer", "clip:Walk")
+    this.obj.setAttribute("sound", "src:#monsterRoar;loop:false;volume:10")
+    let sound1 = document.createElement("a-entity");
+    sound1.setAttribute("sound", "src:#monsterMove;loop:true;volume:10")
+    sound1.setAttribute("id","monsterSound1")
+    let sound2 = document.createElement("a-entity");
+    sound2.setAttribute("sound", "src:#monsterAttack;loop:false;volume:10")
+    sound2.setAttribute("id","monsterAttackSound")
+    this.obj.append(sound1)
+    this.obj.append(sound2)
     scene.append(this.obj);
 
     this.lineOfSight = document.createElement("a-box");
@@ -33,7 +42,6 @@ class MonsterPathing {
   move() {
     for (let i = 0; i < this.blocks.length; i++) {
       this.obj.setAttribute("look-at", "#block" + this.nextBlock)
-
       if (!this.seePlayer) {
         this.hit = false;
         this.obj.setAttribute("animation-mixer", "clip:Walk")
@@ -69,6 +77,7 @@ class MonsterPathing {
             if (this.blocks[this.nextBlock - 1].object3D.position.x < camera.object3D.position.x && camera.object3D.position.x < this.obj.object3D.position.x) {
               if (this.blocks[this.nextBlock - 1].object3D.position.z - 2.5 < camera.object3D.position.z && this.blocks[this.nextBlock - 1].object3D.position.z + 2.5 > camera.object3D.position.z) {
                 this.seePlayer = true;
+                this.obj.components.sound.playSound();
                 this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
               }
             }
@@ -76,6 +85,7 @@ class MonsterPathing {
             if (this.blocks[this.nextBlock - 1].object3D.position.x > camera.object3D.position.x && camera.object3D.position.x > this.obj.object3D.position.x) {
               if (this.blocks[this.nextBlock - 1].object3D.position.z - 2.5 < camera.object3D.position.z && this.blocks[this.nextBlock - 1].object3D.position.z + 2.5 > camera.object3D.position.z) {
                 this.seePlayer = true;
+                this.obj.components.sound.playSound();
                 this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
               }
             }
@@ -85,6 +95,7 @@ class MonsterPathing {
             if (this.obj.object3D.position.z > camera.object3D.position.z && camera.object3D.position.z > this.blocks[this.nextBlock - 1].object3D.position.z) {
               if (this.obj.object3D.position.x - 2.5 < camera.object3D.position.x && this.obj.object3D.position.x + 2.5 > camera.object3D.position.x) {
                 this.seePlayer = true;
+                this.obj.components.sound.playSound();
                 this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
               }
             }
@@ -92,6 +103,7 @@ class MonsterPathing {
             if (this.obj.object3D.position.z < camera.object3D.position.z && camera.object3D.position.z < this.blocks[this.nextBlock - 1].object3D.position.z) {
               if (this.obj.object3D.position.x - 2.5 < camera.object3D.position.x && this.obj.object3D.position.x + 2.5 > camera.object3D.position.x) {
                 this.seePlayer = true;
+                this.obj.components.sound.playSound();
                 this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
               }
             }
@@ -123,8 +135,10 @@ class MonsterPathing {
           } else if (distance(camera, this.obj) < 3) {
             console.log("hit")
             this.hit = true;
+            hp -= 25;
+            document.getElementById("monsterAttackSound").components.sound.playSound();
             this.obj.setAttribute("animation-mixer", "clip:Idle")
-            setTimeout(() => { this.closestBlock() }, 2000);
+            setTimeout(() => { this.closestBlock() }, 3000);
           }
           if (distance(camera, this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
             this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))
