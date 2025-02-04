@@ -13,15 +13,15 @@ window.onload = function () {
   ball = new puzzle1Ball();
   monster = new MonsterPathing;
   new platformRotate();
-  for (let z = 0; z <= 35; z++) {
-    new pondRocks(10 + z, 0, -20)
+  for (let z = 0; z >= -35; z--) {
+    new pondRocks(-10 + z, 0, -20)
   }
   for (let z = 1; z < 40; z++) {
-    new pondRocks(10, 0, -20 + z)
-    new pondRocks(45, 0, -20 + z)
+    new pondRocks(-10, 0, -20 + z)
+    new pondRocks(-45, 0, -20 + z)
   }
-  for (let z = 0; z <= 35; z++) {
-    new pondRocks(10 + z, 0, 20)
+  for (let z = 0; z >= -35; z--) {
+    new pondRocks(-10 + z, 0, 20)
   }
   loop();
 }
@@ -100,7 +100,7 @@ function updateFlashlight() {
       if (batteryOn) battery -= 1;
       document.querySelector("#battery").setAttribute("value", `Battery : ${battery}%`)
       batteryRemove = false;
-    }, 1000)
+    }, 3000)
   }
 
 }

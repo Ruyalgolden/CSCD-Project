@@ -5,6 +5,7 @@ class MonsterPathing {
     this.seePlayer = false;
     this.hit = false;
     this.y = 0;
+    this.inMain = false;
     this.blocks = [];
     for (let i = 1; i <= 8; i++) {
       this.blocks.push(document.querySelector("#block" + i));
@@ -19,10 +20,10 @@ class MonsterPathing {
     this.obj.setAttribute("sound", "src:#monsterRoar;loop:false;volume:10")
     let sound1 = document.createElement("a-entity");
     sound1.setAttribute("sound", "src:#monsterMove;loop:true;volume:10")
-    sound1.setAttribute("id","monsterSound1")
+    sound1.setAttribute("id", "monsterSound1")
     let sound2 = document.createElement("a-entity");
     sound2.setAttribute("sound", "src:#monsterAttack;loop:false;volume:10")
-    sound2.setAttribute("id","monsterAttackSound")
+    sound2.setAttribute("id", "monsterAttackSound")
     this.obj.append(sound1)
     this.obj.append(sound2)
     scene.append(this.obj);
@@ -40,6 +41,15 @@ class MonsterPathing {
     scene.append(this.lineOfSight);
   }
   move() {
+    if (-7.5 < camera.object3D.position.x && camera.object3D.position.x < 12.5 && 22.5 < camera.object3D.position.z && camera.object3D.position.z < 47.5) {
+      this.inMain = true;
+    } else if (7.5 < camera.object3D.position.x && camera.object3D.position.x < 42.5 && 32.5 < camera.object3D.position.z && camera.object3D.position.z < 37.5) {
+      this.inMain = true;
+    } else {
+      this.inMain = false;
+    }
+    console.log(this.inMain);
+    // console.log(-7.5 < camera.object3D.position.x && camera.object3D.position.x < 12.5 && 22.5 < camera.object3D.position.z && camera.object3D.position.z < 47.5)
     for (let i = 0; i < this.blocks.length; i++) {
       this.obj.setAttribute("look-at", "#block" + this.nextBlock)
       if (!this.seePlayer) {
@@ -139,6 +149,8 @@ class MonsterPathing {
             document.getElementById("monsterAttackSound").components.sound.playSound();
             this.obj.setAttribute("animation-mixer", "clip:Idle")
             setTimeout(() => { this.closestBlock() }, 3000);
+          } else if (!this.inMain) {
+            this.closestBlock();
           }
           if (distance(camera, this.obj) < parseInt(this.lineOfSight.getAttribute("width"))) {
             this.lineOfSight.setAttribute("width", Math.sqrt(Math.pow(Math.abs(camera.object3D.position.x - this.x), 2) + Math.pow(Math.abs(camera.object3D.position.z - this.z), 2)))

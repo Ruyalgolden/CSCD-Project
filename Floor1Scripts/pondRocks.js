@@ -6,7 +6,6 @@ class pondRocks {
         this.z = z;
         this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z})
         this.obj.setAttribute("color", "gray")
-        this.obj.setAttribute("static-body", "")
         scene.append(this.obj);
     }
 }
