@@ -1,5 +1,6 @@
-let scene, camera, gateCloser, monster, ball;
+let scene, camera, gateCloser, monster, ball, mazeRun;
 let greenKey = false;
+let hasGreenKey = true;
 let hp = 100;
 let battery = 100;
 let batteryRemove = false;
@@ -23,12 +24,24 @@ window.onload = function () {
   for (let z = 0; z >= -35; z--) {
     new pondRocks(-10 + z, 0, 20)
   }
+  console.log(document.querySelector("#greenDoor"))
+  document.querySelector("#greenDoor").addEventListener("click", function() {
+    if (hasGreenKey) {
+      document.querySelector("#greenDoor").setAttribute("position",{x:0,y:-20,z:0});
+    }
+  })
+  document.querySelector("#greenKey").addEventListener("click", function() {
+    if (greenKey) {
+      hasGreenKey = true;
+      document.querySelector("#greenKey").setAttribute("opacity", 0)
+    }
+  })
+  mazeRun = new mazeScript();
   loop();
 }
 function loop() {
   if (!soundplaying) {
     setTimeout(function () {
-      console.log(document.getElementById("monsterSound1"))
       document.getElementById("monsterSound1").components.sound.playSound();
     }, 2000)
     soundplaying = true;
@@ -45,7 +58,7 @@ function loop() {
     console.log("Ball can respawn!")
     ball.spawned = false;
   }
-  if (distance(document.querySelector("#ball" + ball.currentBall), document.querySelector("#win")) < 1) {
+  if (distance(document.querySelector("#ball" + ball.currentBall), document.querySelector("#win")) < 1 && !greenKey) {
     console.log("Ball in!")
     greenKey = true;
     document.querySelector("#greenKey").setAttribute("opacity", 1)

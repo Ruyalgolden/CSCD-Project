@@ -48,8 +48,6 @@ class MonsterPathing {
     } else {
       this.inMain = false;
     }
-    console.log(this.inMain);
-    // console.log(-7.5 < camera.object3D.position.x && camera.object3D.position.x < 12.5 && 22.5 < camera.object3D.position.z && camera.object3D.position.z < 47.5)
     for (let i = 0; i < this.blocks.length; i++) {
       this.obj.setAttribute("look-at", "#block" + this.nextBlock)
       if (!this.seePlayer) {
