@@ -59,6 +59,7 @@ class mazeScript {
                     let wall = document.createElement("a-box");
                     wall.setAttribute("position", { x: i, y: 5, z: j })
                     wall.setAttribute("color", "brown")
+                    wall.setAttribute("src","#bloody")
                     wall.setAttribute("static-body", "")
                     wall.setAttribute("height", 10);
                     scene.append(wall);

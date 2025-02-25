@@ -18,17 +18,19 @@
 
 <body>
   <!-- <a-scene stats light="defaultLightsEnabled: false"> -->
-  <a-scene stats physics="debug: false">
+  <a-scene stats physics="debug: false" light="defaultLightsEnabled: false" fog="type: exponential; color: #0D0D0D; density: 0.1">
     <a-assets>
       <audio id="gateClose" src="Audio/GateClosed.mp3" preload="auto"></audio>
       <audio id="monsterRoar" src="Audio/MonsterGrowl.mp3" preload="auto"></audio>
       <audio id="monsterMove" src="Audio/MonsterMoving.mp3" preload="auto"></audio>
       <audio id="monsterAttack" src="Audio/MonsterAttack.mp3" preload="auto"></audio>
       <img id="texture" src="Floor1Props/tiles.jpg" preload="auto">
+      <img id="bloody" src="Floor1Props/bloody.jpg" preload="auto">
+      <img id="face" src="Floor1Props/face.jpg" preload="auto">
       <a-asset-item id="monster" src="Monster/scene.gltf" preload="auto"></a-asset-item>
     </a-assets>
-    <!-- <a-box light="type:ambient; intensity:0.1"></a-box> -->
-    <a-box light="type:ambient; intensity:.75"></a-box>
+    <a-box light="type:ambient; intensity:0.05"></a-box>
+    <!-- <a-box light="type:ambient; intensity:.75"></a-box> -->
     <!-- Left Gate -->
     <a-box opacity="0" rotation="0 90 0" position="-5 0 -25" id="LeftGate" sound="src:#gateClose;loop:false;volume:4">
       <a-box static-body height="5" width="5" depth=".5" position="2.5 0 0"></a-box>
@@ -147,14 +149,14 @@
 
 
     <!-- Monster Block Pathing -->
-    <a-box id="block1" opacity="1" position="-5 .5 25"></a-box>
-    <a-box id="block2" opacity="1" position="-5 .5 35"></a-box>
-    <a-box id="block3" opacity="1" position="-5 .5 45"></a-box>
-    <a-box id="block4" opacity="1" position="10 .5 45"></a-box>
-    <a-box id="block5" opacity="1" position="10 .5 35"></a-box>
-    <a-box id="block6" opacity="1" position="40 .5 35"></a-box>
-    <a-box id="block7" opacity="1" position="10 .5 35"></a-box>
-    <a-box id="block8" opacity="1" position="10 .5 25"></a-box>
+    <a-box id="block1" opacity="0" position="-5 .5 25"></a-box>
+    <a-box id="block2" opacity="0" position="-5 .5 35"></a-box>
+    <a-box id="block3" opacity="0" position="-5 .5 45"></a-box>
+    <a-box id="block4" opacity="0" position="10 .5 45"></a-box>
+    <a-box id="block5" opacity="0" position="10 .5 35"></a-box>
+    <a-box id="block6" opacity="0" position="40 .5 35"></a-box>
+    <a-box id="block7" opacity="0" position="10 .5 35"></a-box>
+    <a-box id="block8" opacity="0" position="10 .5 25"></a-box>
 
     <!-- Walls -->
     <a-box static-body color="#282C35" position="7.5 5 22.5" rotation="0 0 0" height="10" width="5" depth=".5"
@@ -165,15 +167,11 @@
       src=#texture></a-box>
     <a-box static-body color="#282C35" position="11.25 5 22.5" height="10" width="2.5" depth=".5"
       src="#texture"></a-box>
-
-    <!-- <a-box static-body color="#282C35" position="30 5 22.5" height="10" width="30" depth=".5" src="#texture"></a-box> -->
-
     <a-box static-body color="#282C35" position="15 5 32.5" height="10" width="5" depth=".5" src="#texture"></a-box>
     <a-box static-body color="#282C35" position="13.5 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
       src="#texture"></a-box>
     <a-box static-body color="#282C35" position="12.5 5 27.5" rotation="0 90 0" height="10" width="10" depth=".5"
       src="#texture"></a-box>
-
     <a-box static-body color="#282C35" position="23.5 5 37.5" rotation="0 0 0" height="10" width="20" depth=".5"
       src=#texture></a-box>
     <a-box static-body color="#282C35" position="42.5 5 37.5" height="10" width="5" depth=".5" src="#texture"></a-box>
@@ -190,10 +188,22 @@
       src=#texture></a-box>
     <a-box static-body color="#282C35" position="-45 5 37.5" rotation="0 90 0" height="10" width="30" depth=".5"
       src=#texture></a-box>
-
-
     <a-box static-body color="#282C35" position="43.5 5 5" rotation="0 90 0" height="10" width="36" depth=".5"
       src=#texture></a-box>
+
+
+    <a-box static-body color="#282C35" position="7.5 6 22.5" rotation="0 0 0" height="4" width="4" depth="1"
+      src="#face"></a-box>
+    <a-box static-body color="#282C35" position="-7.5 6 22.5" rotation="0 0 0" height="4" width="4" depth="1"
+      src="#bloody"></a-box>
+    <a-box static-body color="#282C35" position="15 5 32.5" height="10" width="5" depth=".5" src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="13.5 6 45" rotation="0 90 0" height="4" width="4" depth="1"
+      src="#face"></a-box>
+    <a-box static-body color="#282C35" position="12.5 6 27.5" rotation="0 90 0" height="4" width="4" depth="1"
+      src="#bloody"></a-box>
+    <a-box static-body color="#282C35" position="23.5 6 37.5" rotation="0 0 0" height="4" width="4" depth="1"
+      src="#face"></a-box>
+    <a-box static-body color="#282C35" position="42.5 6 37.5" height="4" width="4" depth="1" src="#bloody"></a-box>
 
     <a-ocean width="35" depth="40" position="-27.5 .35 0"></a-ocean>
     <a-box static-body position="-10 2.5 -1.125" rotation="0 90 0" width="47.5" height="5" opacity="0"></a-box>
@@ -405,35 +415,6 @@
         <a-box color="tomato" depth="1" height=".5" width="3" position="-10 0 -15"></a-box>
         <a-box color="tomato" depth="1" height=".5" width="18" position="0 0 -15"></a-box>
 
-        <!-- Torches on the left side of the path -->
-        <a-light type="ambient" color="#222"></a-light>
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="27 1 -17"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="27 2.5 -17"></a-cone>
-
-        <a-light type="ambient" color="#17202a "></a-light>
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="25 1 -17"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="25 2.5 -17"></a-cone>
-
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="15 1 -17"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="15 2.5 -17"></a-cone>
-
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="0 1 -17"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="0 2.5 -17"></a-cone>
-
-        <!-- Torches on the right side of the path -->
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="27 1 -13"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="27 2.5 -13"></a-cone>
-
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="25 1 -13"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="25 2.5 -13"></a-cone>
-
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="15 1 -13"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="15 2.5 -13"></a-cone>
-
-        <a-cylinder color="saddlebrown" height="2" radius="0.1" position="0 1 -13"></a-cylinder>
-        <a-cone color="orange" height="1.5" radius-bottom="0.4" radius-top="0.1" position="0 2.5 -13"></a-cone>
-
-
         <!-- Puzzle 1 -->
         <a-entity position="10 0 50" id="puzzle1">
           <a-box static-body position="-1.25 1 0" height="2" depth="5" width="9"></a-box>
@@ -479,8 +460,7 @@
           width="2"></a-box>
         <a-box position="24.5 5 22.25" static-body width="20" height="10" src="#texture" color="#282C35"
           depth="2.5"></a-box>
-        <a-box position="24.5 5 -7.5" width="20" height="10" src="#texture" color="#282C35"
-          depth="1"></a-box>
+        <a-box position="24.5 5 -7.5" width="20" height="10" src="#texture" color="#282C35" depth="1"></a-box>
         <!-- Sky (DO NOT TOUCH) -->
         <a-sky color="black"></a-sky>
         <!-- Camera (DO NOT TOUCH) -->
