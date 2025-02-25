@@ -17,8 +17,9 @@
 </head>
 
 <body>
-  <!-- <a-scene stats light="defaultLightsEnabled: false"> -->
-  <a-scene stats physics="debug: false" light="defaultLightsEnabled: false" fog="type: exponential; color: #0D0D0D; density: 0.1">
+  <a-scene stats>
+    <!-- <a-scene stats physics="debug: false" light="defaultLightsEnabled: false"
+    fog="type: exponential; color: #0D0D0D; density: 0.1">-->
     <a-assets>
       <audio id="gateClose" src="Audio/GateClosed.mp3" preload="auto"></audio>
       <audio id="monsterRoar" src="Audio/MonsterGrowl.mp3" preload="auto"></audio>
@@ -29,8 +30,8 @@
       <img id="face" src="Floor1Props/face.jpg" preload="auto">
       <a-asset-item id="monster" src="Monster/scene.gltf" preload="auto"></a-asset-item>
     </a-assets>
-    <a-box light="type:ambient; intensity:0.05"></a-box>
-    <!-- <a-box light="type:ambient; intensity:.75"></a-box> -->
+    <!-- <a-box light="type:ambient; intensity:0.05" opacity="0"></a-box> -->
+    <a-box light="type:ambient; intensity:.75"></a-box>
     <!-- Left Gate -->
     <a-box opacity="0" rotation="0 90 0" position="-5 0 -25" id="LeftGate" sound="src:#gateClose;loop:false;volume:4">
       <a-box static-body height="5" width="5" depth=".5" position="2.5 0 0"></a-box>
@@ -190,6 +191,23 @@
       src=#texture></a-box>
     <a-box static-body color="#282C35" position="43.5 5 5" rotation="0 90 0" height="10" width="36" depth=".5"
       src=#texture></a-box>
+    <a-box static-body color="#282C35" position="-7.5 5 27.5" rotation="0 90 0" height="10" width="10" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="-7.5 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="-20 5 27.5" rotation="0 90 0" height="10" width="10" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="-32.5 5 27.5" rotation="0 90 0" height="10" width="10" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="-20 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="-32.5 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
+      src="#texture"></a-box>
+
+    <a-box static-body color="#282C35" depth=".5" height="10" width="9" position="39 5 -13" src="#texture"></a-box>
+    <!-- <a-box static-body id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5" rotation="0 90 0"></a-box> -->
+    <a-box id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5"
+      rotation="0 90 0"></a-box>
 
 
     <a-box static-body color="#282C35" position="7.5 6 22.5" rotation="0 0 0" height="4" width="4" depth="1"
@@ -211,6 +229,8 @@
     <!-- Doors -->
     <a-box static-body color="green" clickable id="greenDoor" position="20 3.75 32.5" height="7.5" width="5"
       depth=".5"></a-box>
+    <!-- <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"></a-box> -->
+    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"></a-box>
 
     <!-- Trees -->
     <a-entity class="tree" position="15 0 -20">
@@ -367,7 +387,7 @@
       <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
     </a-entity>
 
-    <<a-entity id="bush1" position="24 0 -20">
+    <a-entity id="bush1" position="24 0 -20">
       <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
       <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
       <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
@@ -379,106 +399,106 @@
       <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
       <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
       <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
-      </a-entity>
+    </a-entity>
 
-      <<a-entity id="bush1" position="28 0 -20">
-        <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-        <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-        <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
-        <!-- Berries attached to foliage -->
-        <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-        <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-        <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
-        <!-- Additional Berries -->
-        <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-        <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-        <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
-        </a-entity>
+    <a-entity id="bush1" position="28 0 -20">
+      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <!-- Berries attached to foliage -->
+      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <!-- Additional Berries -->
+      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+    </a-entity>
 
-        <a-entity id="bush1" position="32 0 -20">
-          <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-          <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-          <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
-          <!-- Berries attached to foliage -->
-          <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-          <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-          <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
-          <!-- Additional Berries -->
-          <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-          <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-          <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
-        </a-entity>
-        <!-- Path -->
-        <a-box color="tomato" depth="1" height=".5" width="18" position="27 0 -15"></a-box>
-        <a-box color="tomato" depth="1" height=".5" width="18" position="25 0 -15"></a-box>
-        <a-box color="tomato" depth="1" height=".5" width="18" position="15 0 -15"></a-box>
-        <a-box color="tomato" depth="1" height=".5" width="3" position="-10 0 -15"></a-box>
-        <a-box color="tomato" depth="1" height=".5" width="18" position="0 0 -15"></a-box>
+    <a-entity id="bush1" position="32 0 -20">
+      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <!-- Berries attached to foliage -->
+      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <!-- Additional Berries -->
+      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+    </a-entity>
+    <!-- Path -->
+    <a-box color="tomato" depth="5" height=".5" width="18" position="27 0 -15"></a-box>
+    <a-box color="tomato" depth="5" height=".5" width="18" position="25 0 -15"></a-box>
+    <a-box color="tomato" depth="5" height=".5" width="18" position="15 0 -15"></a-box>
+    <a-box color="tomato" depth="5" height=".5" width="3" position="-10 0 -15"></a-box>
+    <a-box color="tomato" depth="5" height=".5" width="18" position="0 0 -15"></a-box>
 
-        <!-- Puzzle 1 -->
-        <a-entity position="10 0 50" id="puzzle1">
-          <a-box static-body position="-1.25 1 0" height="2" depth="5" width="9"></a-box>
-          <a-box static-body position="-7.5 1 -2.38" height="2" depth=".25" width="3.5"></a-box>
-          <a-box static-body position="-9.25 1 0" height="2" depth="5" width=".25"></a-box>
-          <a-box static-body position="-6.5 1 0" height="2" depth=".25" rotation="-35 0 0" width="5.5"></a-box>
-          <a-box static-body color="gray" opacity=".5" position="-3 5.5 -2.25" height="7" depth=".5"
-            width="12.5"></a-box>
-          <a-box static-body color="gray" opacity=".5" position="-3 5.5 2.25" height="7" depth=".5"
-            width="12.5"></a-box>
-          <a-box static-body color="gray" opacity=".5" position="3 5.5 0" height="7" depth="4" width=".5"></a-box>
-          <a-box static-body color="gray" opacity=".5" position="-9 5.5 0" height="7" depth="4" width=".5"></a-box>
-          <a-box static-body position="-3 9.25 0" height=".5" depth="5" width="12.5"></a-box>
-          <a-box static-body position="-3 2.5 0" rotation="0 0 5" height=".5" depth="4.75" width="9"></a-box>
-          <a-box static-body position="1.5 2.75 0" height="1.6" depth="4.6" width=".25"></a-box>
-          <a-cylinder position="-7 8.5 0" height="1" radius=".75" color="gray"></a-cylinder>
+    <!-- Puzzle 1 -->
+    <a-entity position="10 0 50" id="puzzle1">
+      <a-box static-body position="-1.25 1 0" height="2" depth="5" width="9"></a-box>
+      <a-box static-body position="-7.5 1 -2.38" height="2" depth=".25" width="3.5"></a-box>
+      <a-box static-body position="-9.25 1 0" height="2" depth="5" width=".25"></a-box>
+      <a-box static-body position="-6.5 1 0" height="2" depth=".25" rotation="-35 0 0" width="5.5"></a-box>
+      <a-box static-body color="gray" opacity=".5" position="-3 5.5 -2.25" height="7" depth=".5" width="12.5"></a-box>
+      <a-box static-body color="gray" opacity=".5" position="-3 5.5 2.25" height="7" depth=".5" width="12.5"></a-box>
+      <a-box static-body color="gray" opacity=".5" position="3 5.5 0" height="7" depth="4" width=".5"></a-box>
+      <a-box static-body color="gray" opacity=".5" position="-9 5.5 0" height="7" depth="4" width=".5"></a-box>
+      <a-box static-body position="-3 9.25 0" height=".5" depth="5" width="12.5"></a-box>
+      <a-box static-body position="-3 2.5 0" rotation="0 0 5" height=".5" depth="4.75" width="9"></a-box>
+      <a-box static-body position="1.5 2.75 0" height="1.6" depth="4.6" width=".25"></a-box>
+      <a-cylinder position="-7 8.5 0" height="1" radius=".75" color="gray"></a-cylinder>
 
 
 
-          <a-box static-body id="platBall1" position="-7 6 0" height="2" depth=".25" rotation="25 90 90" width="2"
-            color="green"></a-box>
-          <a-box static-body id="platBall2" position="-5 5.5 0" height="2" depth=".25" rotation="-25 90 90" width="2"
-            color="blue"></a-box>
-          <a-box static-body id="platBall3" position="-3 5 0" height="2" depth=".25" rotation="5 90 90" width="2"
-            color="yellow"></a-box>
-          <a-box static-body id="platBall4" position="-1 4.5 0" height="2" depth=".25" rotation="-5 90 90" width="2"
-            color="orange"></a-box>
-        </a-entity>
+      <a-box static-body id="platBall1" position="-7 6 0" height="2" depth=".25" rotation="25 90 90" width="2"
+        color="green"></a-box>
+      <a-box static-body id="platBall2" position="-5 5.5 0" height="2" depth=".25" rotation="-25 90 90" width="2"
+        color="blue"></a-box>
+      <a-box static-body id="platBall3" position="-3 5 0" height="2" depth=".25" rotation="5 90 90" width="2"
+        color="yellow"></a-box>
+      <a-box static-body id="platBall4" position="-1 4.5 0" height="2" depth=".25" rotation="-5 90 90" width="2"
+        color="orange"></a-box>
+    </a-entity>
 
-        <a-box position="3 .125 45" height=".25" width="2" depth="2" color="red" id="ballSpawnPlate"></a-box>
-        <a-box id="deadBall" position="1.75 2 50" color="red" height=".3" depth="4.5" width="1.75"></a-box>
-        <a-box id="win" position="12.25 2 50" color="green" height=".3" depth="4.5" width="1.25"></a-box>
-        <a-box id="button1" clickable position="3 1 47.5" height="1" width="1" depth=".5" color="green"></a-box>
-        <a-box id="button2" clickable position="5 1 47.5" height="1" width="1" depth=".5" color="blue"></a-box>
-        <a-box id="button3" clickable position="7 1 47.5" height="1" width="1" depth=".5" color="yellow"></a-box>
-        <a-box id="button4" clickable position="9 1 47.5" height="1" width="1" depth=".5" color="orange"></a-box>
+    <a-box position="3 .125 45" height=".25" width="2" depth="2" color="red" id="ballSpawnPlate"></a-box>
+    <a-box id="deadBall" position="1.75 2 50" color="red" height=".3" depth="4.5" width="1.75"></a-box>
+    <a-box id="win" position="12.25 2 50" color="green" height=".3" depth="4.5" width="1.25"></a-box>
+    <a-box id="button1" clickable position="3 1 47.5" height="1" width="1" depth=".5" color="green"></a-box>
+    <a-box id="button2" clickable position="5 1 47.5" height="1" width="1" depth=".5" color="blue"></a-box>
+    <a-box id="button3" clickable position="7 1 47.5" height="1" width="1" depth=".5" color="yellow"></a-box>
+    <a-box id="button4" clickable position="9 1 47.5" height="1" width="1" depth=".5" color="orange"></a-box>
 
-        <a-box id="greenKey" clickable position="7 .25 45.5" height=".5" width="1" depth="1" color="green"
-          opacity="0"></a-box>
+    <a-box id="greenKey" clickable position="7 .25 45.5" height=".5" width="1" depth="1" color="green"
+      opacity="0"></a-box>
 
-        <!-- Additional Walls for Maze -->
-        <a-box position="13.5 5 7.75" static-body src="#texture" color="#282C35" depth="31.5" height="10"
-          width="2"></a-box>
-        <a-box position="24.5 5 22.25" static-body width="20" height="10" src="#texture" color="#282C35"
-          depth="2.5"></a-box>
-        <a-box position="24.5 5 -7.5" width="20" height="10" src="#texture" color="#282C35" depth="1"></a-box>
-        <!-- Sky (DO NOT TOUCH) -->
-        <a-sky color="black"></a-sky>
-        <!-- Camera (DO NOT TOUCH) -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0" position="0 4 0">
-          <a-camera id="camera" look-controls="pointerLockEnabled:true" kinema-body="radius: 0.8" active=true>
-            <a-cursor raycaster="objects: [clickable]">
-              <a-text position="-3.5 -1.5 -1" value="HP : 100" id="hp"></a-text>
-              <a-text position="-3.5 -1.30 -1" value="Battery : 100%" id="battery"></a-text>
-            </a-cursor>
-          </a-camera>
-        </a-entity>
+    <a-box id="redkey" clickable position="39 .25 -7.5" height=".5" width="1" depth="1" color="red"></a-box>
 
-        <!-- Flashlight -->
-        <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:20"></a-entity>
+    <!-- Additional Walls for Maze -->
+    <a-box static-body position="13.5 5 7.75" static-body src="#texture" color="#282C35" depth="31.5" height="10"
+      width="2"></a-box>
+    <a-box static-body position="24.5 5 22.25" static-body width="20" height="10" src="#texture" color="#282C35"
+      depth="2.5"></a-box>
+    <a-box static-body position="24.5 5 -7.5" width="20" height="10" src="#texture" color="#282C35" depth="1"></a-box>
+    <!-- Sky (DO NOT TOUCH) -->
+    <a-sky color="black"></a-sky>
+    <!-- Camera (DO NOT TOUCH) -->
+    <a-entity id="cameraRig" movement-controls="fly: true; speed: 0" position="0 4 0">
+      <a-camera id="camera" look-controls="pointerLockEnabled:true" kinema-body="radius: 0.8" active=true>
+        <a-cursor raycaster="objects: [clickable]">
+          <a-text position="-3.5 -1.5 -1" value="HP : 100" id="hp"></a-text>
+          <a-text position="-3.5 -1.30 -1" value="Battery : 100%" id="battery"></a-text>
+        </a-cursor>
+      </a-camera>
+    </a-entity>
 
-        <!-- Plane (DO NOT TOUCH) -->
-        <a-plane static-body position="0 0 20" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"
-          shadow="receive:true"></a-plane>
+    <!-- Flashlight -->
+    <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:20"></a-entity>
+
+    <!-- Plane (DO NOT TOUCH) -->
+    <a-plane static-body position="0 0 20" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"
+      shadow="receive:true"></a-plane>
   </a-scene>
 </body>
 

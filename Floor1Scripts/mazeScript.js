@@ -171,6 +171,10 @@ class mazeScript {
                     document.querySelector("#mazePurpleDoor"+i).setAttribute("opacity", "0");
                     document.querySelector("#mazePurpleDoor"+i).removeAttribute("static-body");
                     document.querySelector("#mazePurpleDoor"+i).setAttribute("position", { x: document.querySelector("#mazePurpleDoor"+i).object3D.position.x, y: 0, z: document.querySelector("#mazePurpleDoor"+i).object3D.position.z });
+                    document.querySelector("#shedgate").setAttribute("height", "0");
+                    document.querySelector("#shedgate").setAttribute("opacity", "0");
+                    document.querySelector("#shedgate").removeAttribute("static-body");
+                    document.querySelector("#shedgate").setAttribute("position", { x: document.querySelector("#shedgate").object3D.position.x, y: 0, z: document.querySelector("#shedgate").object3D.position.z });
                 }
             }
         })

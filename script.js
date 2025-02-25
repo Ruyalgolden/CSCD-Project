@@ -36,6 +36,10 @@ window.onload = function () {
       document.querySelector("#greenKey").setAttribute("opacity", 0)
     }
   })
+  document.querySelector("#redkey").addEventListener("click", function() {
+    document.querySelector("#redkey").setAttribute("opacity",0);
+    document.querySelector("#redDoor").setAttribute("position",{x:0,y:-20,z:0});
+  })
   mazeRun = new mazeScript();
   loop();
 }
