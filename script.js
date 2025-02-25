@@ -122,7 +122,7 @@ function loop() {
           batteryOn = !batteryOn;
         } else {
           console.log("Light Turned On")
-          flashlight.setAttribute("light", "type: spot; angle: 45;decay:.75;distance:30")
+          flashlight.setAttribute("light", "type: spot; angle: 45;decay:.75;distance:40")
           batteryOn = !batteryOn;
         }
         canTurnOffLight = false;
@@ -144,7 +144,7 @@ function loop() {
 
 function updateFlashlight() {
   let flashlight = document.querySelector("#flashlight")
-  flashlight.setAttribute("light", "type: spot; angle: 45;decay:.75;distance:30")
+  flashlight.setAttribute("light", "type: spot; angle: 45;decay:.75;distance:40")
   let angle = camera.object3D.rotation.y + Math.PI;
   let x = 1.5 * Math.sin(angle) + camera.object3D.position.x;
   let z = 1.5 * Math.cos(angle) + camera.object3D.position.z;

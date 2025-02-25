@@ -17,9 +17,9 @@
 </head>
 
 <body>
-  <a-scene stats>
-    <!-- <a-scene stats physics="debug: false" light="defaultLightsEnabled: false"
-    fog="type: exponential; color: #0D0D0D; density: 0.1"> -->
+  <!-- <a-scene stats> -->
+  <a-scene stats physics="debug: false" light="defaultLightsEnabled: false"
+    fog="type: exponential; color: #0D0D0D; density: 0.1">
     <a-assets>
       <audio id="gateClose" src="Audio/GateClosed.mp3" preload="auto"></audio>
       <audio id="monsterRoar" src="Audio/MonsterGrowl.mp3" preload="auto"></audio>
@@ -35,12 +35,12 @@
       <img id="2" src="Floor1Props/2.webp" preload="auto">
       <img id="3" src="Floor1Props/3.png" preload="auto">
       <img id="4" src="Floor1Props/4.webp" preload="auto">
-      <img id="5" src="Floor1Props/5.png" preload="auto">
-      <img id="6" src="Floor1Props/6.png" preload="auto">
+      <img id="5" src="Floor1Props/5.jpg" preload="auto">
+      <img id="6" src="Floor1Props/6.jpg" preload="auto">
       <a-asset-item id="monster" src="Monster/scene.gltf" preload="auto"></a-asset-item>
     </a-assets>
-    <!-- <a-box light="type:ambient; intensity:0.05" opacity="0"></a-box> -->
-    <a-box light="type:ambient; intensity:.75"></a-box>
+    <a-box light="type:ambient; intensity:0.25" opacity="0"></a-box>
+    <!-- <a-box light="type:ambient; intensity:.75"></a-box> -->
     <!-- Left Gate -->
     <a-box opacity="0" rotation="0 90 0" position="-5 0 -25" id="LeftGate" sound="src:#gateClose;loop:false;volume:4">
       <a-box static-body height="5" width="5" depth=".5" position="2.5 0 0"></a-box>
@@ -168,8 +168,9 @@
     <a-box id="block7" opacity="0" position="10 .5 35"></a-box>
     <a-box id="block8" opacity="0" position="10 .5 25"></a-box>
 
-    <a-box static-body depth="10" height="2.5" width="5" position="2.5 1.125 35"></a-box>
-    <a-dodecahedron position="2.5 2.5 32.5" color="gray" id="grayCrystal" opacity="0" sound="src:#appear;loop:false;volume:7"></a-dodecahedron>
+    <a-box static-body depth="10" height="2.5" width="7.5" position="2.5 1.125 35"></a-box>
+    <a-dodecahedron position="2.5 2.5 32.5" color="gray" id="grayCrystal" opacity="0"
+      sound="src:#appear;loop:false;volume:7"></a-dodecahedron>
     <a-light type="point" position="2.5 5 30" color="gray" intensity="0" id="grayLight"></a-light>
 
     <!-- Walls -->
@@ -217,13 +218,19 @@
     <a-box static-body color="#282C35" position="-32.5 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
       src="#texture"></a-box>
 
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-13.75 5 32.5" src="#1" id="door1" sound="src:#doorKnock;loop:false;volume:4"></a-box>></a-box>
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 32.5" src="#2" id="door2" sound="src:#doorKnock;loop:false;volume:4"></a-box>
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 32.5" src="#3" id="door3" sound="src:#doorKnock;loop:false;volume:4"></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-13.75 5 32.5" src="#1" id="door1"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 32.5" src="#2" id="door2"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 32.5" src="#3" id="door3"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
 
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-13.75 5 37.5" src="#4" id="door4" sound="src:#doorKnock;loop:false;volume:4"></a-box>
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 37.5" src="#5" id="door5" sound="src:#doorKnock;loop:false;volume:4"></a-box>
-      <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 37.5" src="#6" id="door6" sound="src:#doorKnock;loop:false;volume:4"></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-13.75 5 37.5" src="#4" id="door4"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 37.5" src="#5" id="door5"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
+    <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 37.5" src="#6" id="door6"
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
     <a-box static-body color="black" position="0 .1 37.5" rotation="0 0 0" height=".1" width="90" depth="30"></a-box>
     <a-box static-body color="#282C35" depth=".5" height="10" width="9" position="39 5 -13" src="#texture"></a-box>
     <!-- <a-box static-body id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5" rotation="0 90 0"></a-box> -->
@@ -251,203 +258,204 @@
     <a-box static-body color="green" clickable id="greenDoor" position="20 3.75 32.5" height="7.5" width="5"
       depth=".5"></a-box>
     <!-- <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5" sound="src:#wrong;loop:false;volume:7"></a-box> -->
-    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5" sound="src:#wrong;loop:false;volume:7"></a-box>
+    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"
+      sound="src:#wrong;loop:false;volume:7"></a-box>
 
     <!-- Trees -->
     <a-entity class="tree" position="15 0 -20">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#228B22"></a-cone>
 
       <!-- Halloween Ornaments -->
       <!-- Pumpkins with Faces -->
-      <a-sphere radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
         <a-text value=":" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Smiling face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
         <a-text value=":(" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Sad face -->
       </a-sphere>
 
       <!-- Skulls with Faces -->
-      <a-sphere radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
         <a-text value="Boo!" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Scary face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
         <a-text value=":" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Simple face -->
       </a-sphere>
     </a-entity>
 
     <a-entity class="tree" position="10 0 -20">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#006400"></a-cone>
 
       <!-- Halloween Ornaments -->
       <!-- Pumpkins with Faces -->
-      <a-sphere radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
         <a-text value=":)" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Smiling face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
         <a-text value=":(" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Sad face -->
       </a-sphere>
 
       <!-- Skulls with Faces -->
-      <a-sphere radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
         <a-text value="Boo!" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Scary face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
         <a-text value=":" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Simple face -->
       </a-sphere>
     </a-entity>
 
     <a-entity class="tree" position="-7 0 -20">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="#8B4513"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#228B22"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#006400"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="#228B22"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="#006400"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="#228B22"></a-cone>
 
       <!-- Halloween Ornaments -->
       <!-- Pumpkins with Faces -->
-      <a-sphere radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="1.2 3.2 0.7">
         <a-text value=":)" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Smiling face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
+      <a-sphere static-body radius="0.3" color="#FFA500" position="-1.2 3.2 0.7">
         <a-text value=":" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Sad face -->
       </a-sphere>
 
       <!-- Skulls with Faces -->
-      <a-sphere radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="0.7 4.5 0.3">
         <a-text value="Boo!" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Scary face -->
       </a-sphere>
-      <a-sphere radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
+      <a-sphere static-body radius="0.3" color="#FFFFFF" position="-0.7 4.5 0.3">
         <a-text value=":" color="black" position="0 0.2 0" scale="0.3 0.3 0.3"></a-text> <!-- Simple face -->
       </a-sphere>
     </a-entity>
 
     <a-entity class="tree" position="30 0 -10">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
       <!-- Halloween Ornaments -->
-      <a-sphere position="1 2 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
-      <a-sphere position="-1 3 0" radius=".1" color="purple"></a-sphere> <!-- Ghost -->
-      <a-sphere position="0 4.5 1" radius=".1" color="black"></a-sphere> <!-- Bat -->
+      <a-sphere static-body position="1 2 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
+      <a-sphere static-body position="-1 3 0" radius=".1" color="purple"></a-sphere> <!-- Ghost -->
+      <a-sphere static-body position="0 4.5 1" radius=".1" color="black"></a-sphere> <!-- Bat -->
       <!-- New Branches -->
-      <a-cylinder position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
-      <a-cylinder position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
     </a-entity>
 
     <a-entity class="tree" position="25 0 -10">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
       <!-- Halloween Ornaments -->
-      <a-sphere position="1 3 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
-      <a-sphere position="0 2.5 1" radius=".1" color="white"></a-sphere> <!-- Ghost -->
-      <a-sphere position="-1 4 0" radius=".1" color="black"></a-sphere> <!-- Bat -->
+      <a-sphere static-body position="1 3 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
+      <a-sphere static-body position="0 2.5 1" radius=".1" color="white"></a-sphere> <!-- Ghost -->
+      <a-sphere static-body position="-1 4 0" radius=".1" color="black"></a-sphere> <!-- Bat -->
       <!-- New Branches -->
-      <a-cylinder position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
-      <a-cylinder position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
     </a-entity>
 
     <a-entity class="tree" position="20 0 -10">
-      <a-cylinder position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
+      <a-cylinder static-body position="0 0 0" height="3" radius=".75" color="brown"></a-cylinder>
       <!-- Pines -->
-      <a-cone position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
-      <a-cone position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 1.5 0" height="1.5" radius-bottom="2" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 2.5 0" height="1.5" radius-bottom="1.7" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 3.5 0" height="1.5" radius-bottom="1.4" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 4.5 0" height="1.5" radius-bottom="1.1" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 5.5 0" height="1.5" radius-bottom="0.9" radius-top="0.1" color="green"></a-cone>
+      <a-cone static-body position="0 6.5 0" height="1.5" radius-bottom="0.7" radius-top="0.1" color="green"></a-cone>
       <!-- Halloween Ornaments -->
-      <a-sphere position="1 3.5 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
-      <a-sphere position="-1 2.5 0" radius=".1" color="white"></a-sphere> <!-- Ghost -->
-      <a-sphere position="0 4.5 -1" radius=".1" color="black"></a-sphere> <!-- Bat -->
+      <a-sphere static-body position="1 3.5 0" radius=".1" color="orange"></a-sphere> <!-- Pumpkin -->
+      <a-sphere static-body position="-1 2.5 0" radius=".1" color="white"></a-sphere> <!-- Ghost -->
+      <a-sphere static-body position="0 4.5 -1" radius=".1" color="black"></a-sphere> <!-- Bat -->
       <!-- New Branches -->
-      <a-cylinder position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
-      <a-cylinder position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
+      <a-cylinder static-body position="-0.75 4.5 0" height="0.5" radius=".2" color="green"></a-cylinder>
     </a-entity>
 
     <!-- Bushes -->
 
     <a-entity id="bush1" position="20 0 -20">
-      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
       <!-- Berries attached to foliage -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
       <!-- Additional Berries -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
     </a-entity>
 
     <a-entity id="bush1" position="24 0 -20">
-      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
       <!-- Berries attached to foliage -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
       <!-- Additional Berries -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
     </a-entity>
 
     <a-entity id="bush1" position="28 0 -20">
-      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
       <!-- Berries attached to foliage -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
       <!-- Additional Berries -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
     </a-entity>
 
     <a-entity id="bush1" position="32 0 -20">
-      <a-sphere radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
-      <a-sphere radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.5" color="#228B22" position="0 1 0"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="0.6 0.8 0.4"></a-sphere>
+      <a-sphere static-body radius="1.2" color="#228B22" position="-0.6 0.8 0.4"></a-sphere>
       <!-- Berries attached to foliage -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.5 1.2 0.5"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.3 1.0 -0.2"></a-sphere>
       <!-- Additional Berries -->
-      <a-sphere radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
-      <a-sphere radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="-0.8 1.3 0.7"></a-sphere>
+      <a-sphere static-body radius="0.1" color="#FF0000" position="0.2 0.9 -0.6"></a-sphere>
     </a-entity>
     <!-- Path -->
     <a-box color="tomato" depth="5" height=".5" width="18" position="27 0 -15"></a-box>
@@ -494,7 +502,8 @@
     <a-box id="greenKey" clickable position="7 .25 45.5" height=".5" width="1" depth="1" color="green"
       opacity="0"></a-box>
 
-    <a-box id="redkey" clickable position="39 .25 -7.5" height=".5" width="1" depth="1" color="red" scale="1 2 1"></a-box>
+    <a-box id="redkey" clickable position="39 .25 -7.5" height=".5" width="1" depth="1" color="red"
+      scale="1 2 1"></a-box>
     <a-box position="42 0 -7.5" rotation="-90 -90 0">
       <a-text value="516" side="double" position="-.5 0 .5" color="black" scale="2.5 2.5 2.5"></a-text>
     </a-box>
@@ -516,10 +525,11 @@
         </a-cursor>
       </a-camera>
     </a-entity>
-    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false" id="cutsceneCamera" position="0 6 45" active=false></a-camera>
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
+      id="cutsceneCamera" position="0 6 45" active=false></a-camera>
 
     <!-- Flashlight -->
-    <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:20"></a-entity>
+    <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:40"></a-entity>
 
     <!-- Plane (DO NOT TOUCH) -->
     <a-plane static-body position="0 0 20" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"
