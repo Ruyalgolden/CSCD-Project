@@ -25,6 +25,8 @@
       <audio id="monsterRoar" src="Audio/MonsterGrowl.mp3" preload="auto"></audio>
       <audio id="monsterMove" src="Audio/MonsterMoving.mp3" preload="auto"></audio>
       <audio id="monsterAttack" src="Audio/MonsterAttack.mp3" preload="auto"></audio>
+      <audio id="appear" src="Audio/appear.mp3" preload="auto"></audio>
+      <audio id="wrong" src="Audio/wrong.mp3" preload="auto"></audio>
       <audio id="doorKnock" src="Audio/doorKnock.mp3" preload="auto"></audio>
       <img id="texture" src="Floor1Props/tiles.jpg" preload="auto">
       <img id="bloody" src="Floor1Props/bloody.jpg" preload="auto">
@@ -166,7 +168,8 @@
     <a-box id="block7" opacity="0" position="10 .5 35"></a-box>
     <a-box id="block8" opacity="0" position="10 .5 25"></a-box>
 
-    <a-dodecahedron position="2.5 .5 30" color="gray" id="grayCrystal" opacity="0"></a-dodecahedron>
+    <a-box static-body depth="10" height="2.5" width="5" position="2.5 1.125 35"></a-box>
+    <a-dodecahedron position="2.5 2.5 32.5" color="gray" id="grayCrystal" opacity="0" sound="src:#appear;loop:false;volume:7"></a-dodecahedron>
     <a-light type="point" position="2.5 5 30" color="gray" intensity="0" id="grayLight"></a-light>
 
     <!-- Walls -->
@@ -222,7 +225,6 @@
       <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 37.5" src="#5" id="door5" sound="src:#doorKnock;loop:false;volume:4"></a-box>
       <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 37.5" src="#6" id="door6" sound="src:#doorKnock;loop:false;volume:4"></a-box>
     <a-box static-body color="black" position="0 .1 37.5" rotation="0 0 0" height=".1" width="90" depth="30"></a-box>
-
     <a-box static-body color="#282C35" depth=".5" height="10" width="9" position="39 5 -13" src="#texture"></a-box>
     <!-- <a-box static-body id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5" rotation="0 90 0"></a-box> -->
     <a-box id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5"
@@ -248,8 +250,8 @@
     <!-- Doors -->
     <a-box static-body color="green" clickable id="greenDoor" position="20 3.75 32.5" height="7.5" width="5"
       depth=".5"></a-box>
-    <!-- <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"></a-box> -->
-    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"></a-box>
+    <!-- <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5" sound="src:#wrong;loop:false;volume:7"></a-box> -->
+    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5" sound="src:#wrong;loop:false;volume:7"></a-box>
 
     <!-- Trees -->
     <a-entity class="tree" position="15 0 -20">
@@ -514,7 +516,7 @@
         </a-cursor>
       </a-camera>
     </a-entity>
-    <a-camera wasd-controls-enabled="false" look-controls-enabled="false" id="cutsceneCamera" position="0 6 45" active=false></a-camera>
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false" id="cutsceneCamera" position="0 6 45" active=false></a-camera>
 
     <!-- Flashlight -->
     <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:20"></a-entity>

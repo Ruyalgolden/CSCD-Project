@@ -86,6 +86,7 @@ function loop() {
     } else {
       hp -= 5;
       code = "";
+      document.getElementById("redDoor").components.sound.playSound();
     }
   }
   if (!soundplaying) {
@@ -178,6 +179,7 @@ function distance(obj1, obj2) {
   return d;
 }
 function playGrayCrystal() {
+  document.getElementById("grayCrystal").components.sound.playSound();
   document.getElementById("camera").setAttribute("active", false);
   document.getElementById("cutsceneCamera").setAttribute("active", true);
   document.getElementById("grayLight").setAttribute("intensity", "1");
