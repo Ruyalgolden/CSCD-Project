@@ -28,6 +28,7 @@
       <audio id="appear" src="Audio/appear.mp3" preload="auto"></audio>
       <audio id="wrong" src="Audio/wrong.mp3" preload="auto"></audio>
       <audio id="doorKnock" src="Audio/doorKnock.mp3" preload="auto"></audio>
+      <audio id="glassBreak" src="Audio/glassBreak.mp3" preload="auto"></audio>
       <img id="texture" src="Floor1Props/tiles.jpg" preload="auto">
       <img id="bloody" src="Floor1Props/bloody.jpg" preload="auto">
       <img id="face" src="Floor1Props/face.jpg" preload="auto">
@@ -38,8 +39,9 @@
       <img id="5" src="Floor1Props/5.jpg" preload="auto">
       <img id="6" src="Floor1Props/6.jpg" preload="auto">
       <a-asset-item id="monster" src="Monster/scene.gltf" preload="auto"></a-asset-item>
+      <!-- <a-asset-item id="counter" src="KitchenModel/scene.gltf"></a-asset-item> -->
     </a-assets>
-    <a-box light="type:ambient; intensity:0.25" opacity="0"></a-box>
+    <a-box light="type:ambient; intensity:0.1" opacity="0"></a-box>
     <!-- <a-box light="type:ambient; intensity:.75"></a-box> -->
     <!-- Left Gate -->
     <a-box opacity="0" rotation="0 90 0" position="-5 0 -25" id="LeftGate" sound="src:#gateClose;loop:false;volume:4">
@@ -168,10 +170,48 @@
     <a-box id="block7" opacity="0" position="10 .5 35"></a-box>
     <a-box id="block8" opacity="0" position="10 .5 25"></a-box>
 
+
+    <a-box id="plank2nd" position="-3.25 4 50" color="brown" rotation="0 0 -55" width="20" depth="5" opacity="0"></a-box>
+    <a-box position="-26.25 10 38" width="37.5" height=".5" depth="30" static-body></a-box>
+    <a-box static-body color="#282C35" position="-7.5 11.125 40" rotation="0 90 0" height="2.5" width="20" depth=".5"
+      src="#texture"></a-box>
+    <a-box position="-45 15 38" width="3" height="3" depth="3" dynamic-body color="#FF5733"></a-box>
+    <a-box position="-40 17 40" width="3" height="3" depth="3" dynamic-body color="#33FF57"></a-box>
+    <a-box position="-30 19 44" width="3" height="3" depth="3" dynamic-body color="#FFFF33"></a-box>
+    <a-box position="-20 21 36" width="3" height="3" depth="3" dynamic-body color="#33FFFF"></a-box>
+    <a-box position="-50 16 35" width="3" height="3" depth="3" dynamic-body color="#AA33FF"></a-box>
+    <a-sphere position="-48 18 37" radius="2" dynamic-body color="#FF5533"></a-sphere>
+    <a-box position="-46 20 39" width="3" height="3" depth="3" dynamic-body color="#33FF55"></a-box>
+    <a-sphere position="-44 22 41" radius="2" dynamic-body color="#5533FF"></a-sphere>
+    <a-box position="-42 24 43" width="3" height="3" depth="3" dynamic-body color="#FF33AA"></a-box>
+    <a-sphere position="-40 26 45" radius="2" dynamic-body color="#33FFFF"></a-sphere>
+    <a-box position="-45 15 38" width="3" height="3" depth="3" dynamic-body color="#FF5733"></a-box>
+    <a-box position="-40 17 40" width="3" height="3" depth="3" dynamic-body color="#33FF57"></a-box>
+    <a-sphere position="-35 18 42" radius="2" dynamic-body color="#3357FF"></a-sphere>
+    <a-box position="-30 19 44" width="3" height="3" depth="3" dynamic-body color="#FFFF33"></a-box>
+    <a-box position="-20 21 36" width="3" height="3" depth="3" dynamic-body color="#33FFFF"></a-box>
+    <a-box position="-10 23 32" width="3" height="3" depth="3" dynamic-body color="#7733FF"></a-box>
+    <a-box position="-50 16 35" width="3" height="3" depth="3" dynamic-body color="#AA33FF"></a-box>
+    <a-sphere position="-48 18 37" radius="2" dynamic-body color="#FF5533"></a-sphere>
+    <a-box position="-46 20 39" width="3" height="3" depth="3" dynamic-body color="#33FF55"></a-box>
+    <a-sphere position="-44 22 41" radius="2" dynamic-body color="#5533FF"></a-sphere>
+    <a-box position="-42 24 43" width="3" height="3" depth="3" dynamic-body color="#FF33AA"></a-box>
+    <a-box position="-42 11 43" rotation="-90 -90 0">
+      <a-text value="123" side="double" position="-.5 0 .5" color="black" scale="2.5 2.5 2.5"></a-text>
+    </a-box>
+
+    <a-box static-body color="black" position="0 20 37.5" rotation="0 0 0" height=".1" width="90" depth="30"></a-box>
+
+    <a-box static-body position="0 5 22.5" width="10" height="10" depth=".5" id="door"></a-box>
+    <a-box static-body position="0 15 22.5" width="10" height="10" depth=".5" color="#282C35" src="#texture"></a-box>
+
     <a-box static-body depth="10" height="2.5" width="7.5" position="2.5 1.125 35"></a-box>
     <a-dodecahedron position="2.5 2.5 32.5" color="gray" id="grayCrystal" opacity="0"
       sound="src:#appear;loop:false;volume:7"></a-dodecahedron>
+    <a-dodecahedron position="2.5 2.5 37.6" color="blue" id="blueCrystal" opacity="0"
+      sound="src:#appear;loop:false;volume:7"></a-dodecahedron>
     <a-light type="point" position="2.5 5 30" color="gray" intensity="0" id="grayLight"></a-light>
+    <a-light type="point" position="2.5 5 35" color="blue" intensity="0" id="blueLight"></a-light>
 
     <!-- Walls -->
     <a-box static-body color="#282C35" position="7.5 5 22.5" rotation="0 0 0" height="10" width="5" depth=".5"
@@ -217,9 +257,40 @@
       src="#texture"></a-box>
     <a-box static-body color="#282C35" position="-32.5 5 45" rotation="0 90 0" height="10" width="15" depth=".5"
       src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="7.5 15 22.5" rotation="0 0 0" height="10" width="5" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="-7.5 15 22.5" rotation="0 0 0" height="10" width="5" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="-27.5 15 22.5" rotation="0 0 0" height="10" width="35" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="11.25 15 22.5" height="10" width="2.5" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="15 15 32.5" height="10" width="5" depth=".5" src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="13.5 15 45" rotation="0 90 0" height="10" width="15" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="12.5 15 27.5" rotation="0 90 0" height="10" width="10" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="23.5 15 37.5" rotation="0 0 0" height="10" width="20" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="42.5 15 37.5" height="10" width="5" depth=".5" src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="20 15 32.5" height="2.5" width="5" depth=".5" src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="33.75 15 32.5" height="10" width="22.5" depth=".5"
+      src="#texture"></a-box>
+    <a-box static-body color="#282C35" position="45 15 37.5" rotation="0 90 0" height="10" width="30" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="24 15 52.5" rotation="0 0 0" height="10" width="41.5" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="2 15 52.5" rotation="0 0 0" height="8" width="2.5" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="-21.125 15 52.5" rotation="0 0 0" height="10" width="47.5" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="-45 15 37.5" rotation="0 90 0" height="10" width="30" depth=".5"
+      src=#texture></a-box>
+    <a-box static-body color="#282C35" position="43.5 15 5" rotation="0 90 0" height="10" width="36" depth=".5"
+      src=#texture></a-box>
 
     <a-box clickable static-body height="10" width="12.5" depth=".5" position="-13.75 5 32.5" src="#1" id="door1"
-      sound="src:#doorKnock;loop:false;volume:4"></a-box>></a-box>
+      sound="src:#doorKnock;loop:false;volume:4"></a-box>
     <a-box clickable static-body height="10" width="12.5" depth=".5" position="-26.25 5 32.5" src="#2" id="door2"
       sound="src:#doorKnock;loop:false;volume:4"></a-box>
     <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 32.5" src="#3" id="door3"
@@ -231,12 +302,66 @@
       sound="src:#doorKnock;loop:false;volume:4"></a-box>
     <a-box clickable static-body height="10" width="12.5" depth=".5" position="-38.75 5 37.5" src="#6" id="door6"
       sound="src:#doorKnock;loop:false;volume:4"></a-box>
-    <a-box static-body color="black" position="0 .1 37.5" rotation="0 0 0" height=".1" width="90" depth="30"></a-box>
+    <a-box static-body color="white" position="0 .1 37.5" rotation="0 0 0" height=".1" width="90" depth="30"></a-box>
     <a-box static-body color="#282C35" depth=".5" height="10" width="9" position="39 5 -13" src="#texture"></a-box>
-    <!-- <a-box static-body id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5" rotation="0 90 0"></a-box> -->
-    <a-box id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5"
+    <a-box static-body id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5"
       rotation="0 90 0"></a-box>
+    <!-- <a-box id="shedgate" color="#282C35" depth=".5" height="10" width="5" position="34.5 5 -10.5"
+      rotation="0 90 0"></a-box> -->
 
+    <a-box src="#bloody" position="35.75 1 43.5" rotation="0 90 0" height="2" width="3" depth="8" color="orange"
+      opacity="1" static-body></a-box>
+    <a-box src="#bloody" position="40.75 1 43.5" rotation="0 90 0" height="2" width="3" depth="8" color="orange"
+      opacity="1" static-body></a-box>
+    <a-box src="#bloody" position="30.75 1 43.5" rotation="0 90 0" height="2" width="3" depth="8" color="orange"
+      opacity="1" static-body></a-box>
+    <a-box src="#bloody" position="25.75 1 43.5" rotation="0 90 0" height="2" width="3" depth="8" color="orange"
+      opacity="1" static-body></a-box>
+
+    <!-- <a-entity position="38.5 0 -9.5" gltf-model="url(Models/broken.glb)"></a-entity> -->
+
+    <a-entity position="41 .5 38.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass1"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="33 .5 40" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass2"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="28 .5 38.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass3"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="23 .5 40" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass4"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="18 .5 38.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass5"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="18 .5 42" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass6"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="20 .5 47" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass7"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="15 .5 47" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass8"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="20 .5 49" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass9"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="20 .5 45" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass10"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="23 .5 47" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass11"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="25 .5 50.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass12"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="27 .5 50.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass13"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="31 .5 47.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass14"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="33 .5 47.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass15"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="35 .5 47.5" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass16"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="37 .5 45" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass17"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="39 .5 50" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass18"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="41 .5 50" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass19"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+    <a-entity position="43 .5 50" scale="0.05 0.05 0.05" gltf-model="url(Models/broken.glb)" id="glass20"
+      sound="src:#glassBreak;loop:false;volume:7"></a-entity>
+
+    <a-box position="43 .25 47.5" height=".25" depth="2.5" color="brown" id="woodenPlank" clickable></a-box>
 
     <a-box static-body color="#282C35" position="7.5 6 22.5" rotation="0 0 0" height="4" width="4" depth="1"
       src="#face"></a-box>
@@ -257,9 +382,10 @@
     <!-- Doors -->
     <a-box static-body color="green" clickable id="greenDoor" position="20 3.75 32.5" height="7.5" width="5"
       depth=".5"></a-box>
-    <!-- <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5" sound="src:#wrong;loop:false;volume:7"></a-box> -->
-    <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"
+    <a-box static-body id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"
       sound="src:#wrong;loop:false;volume:7"></a-box>
+    <!-- <a-box id="redDoor" color="red" position="-7.5 5 35" rotation="0 90 0" height="10" width="5" depth=".5"
+      sound="src:#wrong;loop:false;volume:7"></a-box> -->
 
     <!-- Trees -->
     <a-entity class="tree" position="15 0 -20">
@@ -527,6 +653,19 @@
     </a-entity>
     <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
       id="cutsceneCamera" position="0 6 45" active=false></a-camera>
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
+      id="doorCamera" position="0 2.5 17.5" active=false rotation="0 180 0"></a-camera>
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
+      id="gateCamera" position="0 2.5 -15" active=false rotation="0 0 0"></a-camera>
+
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
+      id="deathCamera" position=".5 0 -50" active=false rotation="0 0 0"></a-camera>
+    <a-text position="0 0 -51" value="You Died!" side="double"></a-text>
+
+
+    <a-camera wasd-controls-enabled="false" look-controls="pointerLockEnabled:true" look-controls-enabled="false"
+      id="winCamera" position="15.5 0 -55" active=false rotation="0 0 0"></a-camera>
+    <a-text position="15 0 -56" value="You Win!" side="double"></a-text>
 
     <!-- Flashlight -->
     <a-entity id="flashlight" light="type: spot; angle: 45; decay:.75;distance:40"></a-entity>

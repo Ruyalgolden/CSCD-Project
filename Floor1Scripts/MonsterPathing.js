@@ -19,7 +19,7 @@ class MonsterPathing {
     this.obj.setAttribute("animation-mixer", "clip:Walk")
     this.obj.setAttribute("sound", "src:#monsterRoar;loop:false;volume:10")
     let sound1 = document.createElement("a-entity");
-    sound1.setAttribute("sound", "src:#monsterMove;loop:true;volume:10")
+    sound1.setAttribute("sound", "src:#monsterMove;loop:true;volume:5")
     sound1.setAttribute("id", "monsterSound1")
     let sound2 = document.createElement("a-entity");
     sound2.setAttribute("sound", "src:#monsterAttack;loop:false;volume:10")

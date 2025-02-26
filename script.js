@@ -10,6 +10,10 @@ let canTurnOffLight = true;
 let mazeComplete = false;
 let code = "";
 let grayCrystalObtained = false;
+let plankObtained = false;
+let doorOpen = false;
+let doorSize = 10;
+let gateClosed = true;
 window.onload = function () {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
@@ -27,7 +31,6 @@ window.onload = function () {
   for (let z = 0; z >= -35; z--) {
     new pondRocks(-10 + z, 0, 20)
   }
-  console.log(document.querySelector("#greenDoor"))
   document.querySelector("#greenDoor").addEventListener("click", function () {
     if (hasGreenKey) {
       document.querySelector("#greenDoor").setAttribute("position", { x: 0, y: -20, z: 0 });
@@ -45,49 +48,86 @@ window.onload = function () {
     mazeComplete = true;
   })
   document.querySelector("#door1").addEventListener("click", function () {
-    let door = document.getElementById("door1");
-    door.components.sound.playSound();
-    code += "1";
+    if (distance(document.querySelector("#door1"), camera) < 10) {
+      let door = document.getElementById("door1");
+      door.components.sound.playSound();
+      code += "1";
+    }
   })
   document.querySelector("#door2").addEventListener("click", function () {
-    let door = document.getElementById("door2");
-    door.components.sound.playSound();
-    code += "2";
+    if (distance(document.querySelector("#door2"), camera) < 10) {
+      let door = document.getElementById("door2");
+      door.components.sound.playSound();
+      code += "2";
+    }
   })
   document.querySelector("#door3").addEventListener("click", function () {
-    let door = document.getElementById("door3");
-    door.components.sound.playSound();
+    if (distance(document.querySelector("#door3"), camera) < 10) {
+      let door = document.getElementById("door3");
+      door.components.sound.playSound();
+    }
     code += "3";
   })
   document.querySelector("#door4").addEventListener("click", function () {
-    let door = document.getElementById("door4");
-    door.components.sound.playSound();
-    code += "4";
+    if (distance(document.querySelector("#door4"), camera) < 10) {
+      let door = document.getElementById("door4");
+      door.components.sound.playSound();
+      code += "4";
+    }
   })
   document.querySelector("#door5").addEventListener("click", function () {
-    let door = document.getElementById("door5");
-    door.components.sound.playSound();
-    code += "5";
+    if (distance(document.querySelector("#door5"), camera) < 10) {
+      let door = document.getElementById("door5");
+      door.components.sound.playSound();
+      code += "5";
+    }
   })
   document.querySelector("#door6").addEventListener("click", function () {
-    let door = document.getElementById("door6");
-    door.components.sound.playSound();
-    code += "6";
+    if (distance(document.querySelector("#door6"), camera) < 10) {
+      let door = document.getElementById("door6");
+      door.components.sound.playSound();
+      code += "6";
+    }
+  })
+  document.querySelector("#woodenPlank").addEventListener("click", function () {
+    if (distance(document.querySelector("#woodenPlank"), camera) < 3) {
+      plankObtained=true;
+      document.querySelector("#woodenPlank").setAttribute("opacity","0")
+      document.querySelector("#plank2nd").setAttribute("static-body", "");
+      document.querySelector("#plank2nd").setAttribute("opacity", "1");
+    }
   })
   mazeRun = new mazeScript();
   loop();
 }
 function loop() {
+  for (let i = 1; i <= 20; i++) {
+    if (distance(document.querySelector("#glass" + i), camera) < 1.25) {
+      document.querySelector("#glass" + i).setAttribute("position", { x: 0, y: -10, z: 0 })
+      document.getElementById("glass" + i).components.sound.playSound();
+      hp -= 5;
+    }
+  }
+  // console.log(distance(document.querySelector("#glass1"), camera))
   if (code.length == 3) {
+    
     if (code == "516" && mazeComplete) {
       code = "";
       grayCrystalObtained = true;
       playGrayCrystal();
+    } else if (code == "123" && plankObtained) {
+      code = "";
+      playBlueCrystal();
     } else {
       hp -= 5;
       code = "";
       document.getElementById("redDoor").components.sound.playSound();
     }
+  }
+  if (doorOpen) {
+    doorSize -= .25;
+    document.getElementById("door").setAttribute("height",doorSize)
+    document.getElementById("door").object3D.position.y += .5
   }
   if (!soundplaying) {
     setTimeout(function () {
@@ -136,7 +176,11 @@ function loop() {
   else if (battery == 0) {
     flashlight.setAttribute("light", "type: spot; angle: 45;decay:.75;distance:1")
   }
-  if (hp <= 0) camera.setAttribute("wasd-controls", "enabled:false")
+  if (hp <= 0) {
+    camera.setAttribute("wasd-controls", "enabled:false")
+    document.getElementById("camera").setAttribute("active", false);
+    document.getElementById("deathCamera").setAttribute("active", true);
+  }
   gateCloser.close()
   monster.move()
   window.requestAnimationFrame(loop);
@@ -148,14 +192,11 @@ function updateFlashlight() {
   let angle = camera.object3D.rotation.y + Math.PI;
   let x = 1.5 * Math.sin(angle) + camera.object3D.position.x;
   let z = 1.5 * Math.cos(angle) + camera.object3D.position.z;
-  flashlight.setAttribute("position", { x: x, y: 1, z: z });
-  //Rotate the box instead of the spot light
+  flashlight.setAttribute("position", { x: x, y: camera.object3D.position.y, z: z });
   flashlight.object3D.rotation.y = angle + Math.PI;
-  if (z < 0) {
-    flashlight.object3D.rotation.x = (camera.object3D.rotation.x * 1.5);
-  } else {
-    flashlight.object3D.rotation.x = -(camera.object3D.rotation.x * 1.5);
-  }
+
+  // console.log(camera.object3D.rotation.x*57.2958)
+  // flashlight.object3D.rotation.x = (camera.object3D.rotation.x * 1.5);
   if (!batteryRemove) {
     batteryRemove = true
     setTimeout(function () {
@@ -217,4 +258,47 @@ function playGrayCrystal() {
     document.getElementById("camera").setAttribute("active", true);
     document.getElementById("cutsceneCamera").setAttribute("active", false);
   }, 4000)
+}
+
+
+function playBlueCrystal() {
+  document.getElementById("blueCrystal").components.sound.playSound();
+  document.getElementById("camera").setAttribute("active", false);
+  document.getElementById("cutsceneCamera").setAttribute("active", true);
+  document.getElementById("blueLight").setAttribute("intensity", "1");
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .1);
+  }, 100)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .2);
+  }, 200)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .3);
+  }, 300)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .4);
+  }, 400)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .5);
+  }, 500)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .6);
+  }, 600)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .7);
+  }, 700)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .8);
+  }, 800)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", .9);
+  }, 900)
+  setTimeout(function () {
+    document.getElementById("blueCrystal").setAttribute("opacity", 1);
+  }, 1000)
+  setTimeout(function () {
+    document.getElementById("winCamera").setAttribute("active", true);
+    document.getElementById("cutsceneCamera").setAttribute("active", false);
+  }, 4000)
+  
 }
